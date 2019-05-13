@@ -11,6 +11,7 @@ class ItemList extends React.Component {
   addItems = e => {
     e.preventDefault();
     this.props.addItem(this.state.newItem);
+    this.setState({ newItem: "" });
   };
 
   handleChanges = e => this.setState({ newItem: e.target.value });
@@ -18,12 +19,12 @@ class ItemList extends React.Component {
   render() {
     return (
       <div>
-        <p>To Do: </p>
+        <h1>To Do: </h1>
         {this.props.todos.map(item => (
           <Item item={item} />
         ))}
         <input onChange={this.handleChanges} value={this.state.newItem} />
-        <button onClick={this.addItems}>Add ToDo...</button>
+        <button onClick={this.addItems}>Add Todo...</button>
       </div>
     );
   }
