@@ -1,7 +1,11 @@
 import { ADD_ITEM, TOGGLE_COMPLETE } from "../Actions";
 
 const initialState = {
-  todos: [{ name: "", completed: false, id: 999 }]
+  todos: [
+    {
+      /* name: "", completed: false, id: 999 */
+    }
+  ]
 };
 
 export const reducer = (state = initialState, action) => {
