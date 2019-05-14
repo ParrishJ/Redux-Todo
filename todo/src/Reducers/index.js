@@ -9,7 +9,10 @@ export const reducer = (state = initialState, action) => {
     case ADD_ITEM:
       return {
         ...state,
-        todos: [...state.todos, { name: action.payload, completed: false }]
+        todos: [
+          ...state.todos,
+          { name: action.payload, completed: false, id: Date.now() }
+        ]
       };
     case TOGGLE_COMPLETE:
       return {

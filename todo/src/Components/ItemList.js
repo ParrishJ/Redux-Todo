@@ -2,6 +2,8 @@ import React from "react";
 import Item from "./Item";
 import { connect } from "react-redux";
 import { addItem } from "../Actions";
+import { toggleComplete } from "../Actions";
+import "./ItemList.css";
 
 class ItemList extends React.Component {
   state = {
@@ -25,7 +27,11 @@ class ItemList extends React.Component {
       <div>
         <h1>To Do: </h1>
         {this.props.todos.map(item => (
-          <h2 onClick={() => this.toggleComplete(item.id)} key={item.id}>
+          <h2
+            className={`${item.completed ? " completed" : ""}`}
+            onClick={() => this.toggleComplete(item.id)}
+            key={item.id}
+          >
             {item.name}
             {item.completed}
           </h2>
@@ -45,5 +51,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addItem }
+  { addItem, toggleComplete }
 )(ItemList);
