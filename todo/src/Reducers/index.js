@@ -1,7 +1,7 @@
-import { ADD_ITEM } from "../Actions";
+import { ADD_ITEM, TOGGLE_COMPLETE } from "../Actions";
 
 const initialState = {
-  todos: []
+  todos: [{ name: "", completed: false, id: 999 }]
 };
 
 export const reducer = (state = initialState, action) => {
@@ -9,7 +9,20 @@ export const reducer = (state = initialState, action) => {
     case ADD_ITEM:
       return {
         ...state,
-        todos: [...state.todos, action.payload]
+        todos: [...state.todos, { name: action.payload, completed: false }]
+      };
+    case TOGGLE_COMPLETE:
+      return {
+        ...state,
+        todos: state.todos.map(todo => {
+          if (todo.id === action.payload) {
+            return {
+              ...todo,
+              completed: !todo.completed
+            };
+          }
+          return todo;
+        })
       };
     default:
       return state;

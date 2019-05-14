@@ -14,6 +14,10 @@ class ItemList extends React.Component {
     this.setState({ newItem: "" });
   };
 
+  toggleComplete = id => {
+    this.props.toggleComplete(id);
+  };
+
   handleChanges = e => this.setState({ newItem: e.target.value });
 
   render() {
@@ -21,7 +25,10 @@ class ItemList extends React.Component {
       <div>
         <h1>To Do: </h1>
         {this.props.todos.map(item => (
-          <Item item={item} />
+          <h2 onClick={() => this.toggleComplete(item.id)} key={item.id}>
+            {item.name}
+            {item.completed}
+          </h2>
         ))}
         <input onChange={this.handleChanges} value={this.state.newItem} />
         <button onClick={this.addItems}>Add Todo...</button>
